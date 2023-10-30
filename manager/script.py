@@ -138,3 +138,37 @@ def delete_data():
             file.writelines(data_second_version_second)
 
         print('Запись удалена успешно!')
+
+
+def copy_data():
+    print('Из какого файла вы хотите скопировать данные?')
+    data_first, data_second = print_data()
+    number_file = int(input('Введите номер файла: '))
+
+    while number_file != 1 and number_file != 2:
+        print('Ты дурак?! Даю тебе последний шанс')
+        number_file = int(input('Введите номер файла: '))
+
+    if number_file == 1:
+        print("Какую именно запись по счету вы хотите скопировать?")
+        number_journal = int(input('Введите номер записи для копирования: '))
+
+        with open('data_first_variant.csv', 'r', encoding='utf-8') as file:
+            data_first = file.readlines()
+
+        with open('data_second_variant.csv', 'a', encoding='utf-8') as file:
+            file.write(data_first[number_journal - 1])
+
+        print('Запись скопирована успешно!')
+
+    else:
+        print("Какую именно запись по счету Вы хотите скопировать?")
+        number_journal = int(input('Введите номер записи: '))
+
+        with open('data_second_variant.csv', 'r', encoding='utf-8') as file:
+            data_second = file.readlines()
+
+        with open('data_first_variant.csv', 'a', encoding='utf-8') as file:
+            file.write(data_second[number_journal - 1])
+
+        print('Запись скопирована успешно!')    
